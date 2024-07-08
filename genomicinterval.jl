@@ -20,7 +20,7 @@ function genomicinterval(genomeannotationfile,
             if split(chomp(readann[i]), r"\t")[3] == "gene"
             push!(geneName,split(chomp(readann[i]), "\t")[1])
             push!(geneStart, parse(Int32, split(chomp(readann[i]),r"\t")[4]))
-            push!(geneEnd, parser(Int32, split(chomp(readann[i]), r"\t")[5]))
+            push!(geneEnd, parse(Int32, split(chomp(readann[i]), r"\t")[5]))
             end
         end
         exonName = Any[]
@@ -31,7 +31,7 @@ function genomicinterval(genomeannotationfile,
             if split(chomp(readann[i]), r"\t")[3] == "exon"
             push!(geneName,split(chomp(readann[i]), "\t")[1])
             push!(exonStart, parse(Int32, split(chomp(readann[i]),r"\t")[4]))
-            push!(exonEnd, parser(Int32, split(chomp(readann[i]), r"\t")[5]))
+            push!(exonEnd, parse(Int32, split(chomp(readann[i]), r"\t")[5]))
             end
         end
         cdsName = Any[]
@@ -53,10 +53,11 @@ function genomicinterval(genomeannotationfile,
             if split(chomp(readann[i]), r"\t")[3] == "transcript"
             push!(geneName,split(chomp(readann[i]), "\t")[1])
             push!(transcriptStart, parse(Int32, split(chomp(readann[i]),r"\t")[4]))
-            push!(transcriptEnd, parser(Int32, split(chomp(readann[i]), r"\t")[5]))
+            push!(transcriptEnd, parse(Int32, split(chomp(readann[i]), r"\t")[5]))
             end
         end
         coordinate = parse(Int32, coordinate)
+        writecoordinates = IOBuffer()
         for i in 1:length(geneStart)
             if geneStart[i] <= coordinate && coordinate <= geneEnd[i]
                 write(writecoordinates, "The coordinates for the gene are:", geneStart[i], "\t", geneEnd[i])
@@ -74,12 +75,3 @@ function genomicinterval(genomeannotationfile,
         end
     end
 end
-
-
-
-
-
-
-
-
-
