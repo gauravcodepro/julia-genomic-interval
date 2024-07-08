@@ -14,7 +14,7 @@ function genomicinterval(genomeannotationfile, coordinate)
         geneEnd = Any[]
         geneStrand = Any[]
         for i in readlines(open(genomeannotationfile))
-            if split(chomp(genomeannotationfile[i]), "\t")[3]) == "gene"
+            if split(chomp(genomeannotationfile[i]), "\t"))[3] == "gene"
             push!(geneName,split(chomp(genomeannotationfile[i]), "\t")[1])
             push!(parse(Int32,geneStart, split(chomp(genomeannotationfile[i],"\t"))[4]))
             push!(parser(Int32,geneEnd, split(chomp(genomeannotationfile[i], "\t"))[1]))
@@ -24,7 +24,7 @@ function genomicinterval(genomeannotationfile, coordinate)
         cdsEnd = Any[]
         cdsStrand = Any[]
         for i in readlines(open(genomeannotationfile))
-            if split(chomp(genomeannotationfile[i]), "\t")[3]) == "CDS"
+            if split(chomp(genomeannotationfile[i]), "\t"))[3] == "CDS"
             push!(geneName,split(chomp(genomeannotationfile[i]), "\t")[1])
             push!(parse(Int32,geneStart, split(chomp(genomeannotationfile[i],"\t"))[4]))
             push!(parser(Int32,geneEnd, split(chomp(genomeannotationfile[i], "\t"))[1]))
@@ -34,7 +34,7 @@ function genomicinterval(genomeannotationfile, coordinate)
         exonEnd = Any[]
         exonStrand = Any[]
         for i in readlines(open(genomeannotationfile))
-            if split(chomp(genomeannotationfile[i]), "\t")[3]) == "exon"
+            if split(chomp(genomeannotationfile[i]), "\t"))[3] == "exon"
             push!(geneName,split(chomp(genomeannotationfile[i]), "\t")[1])
             push!(parse(Int32,geneStart, split(chomp(genomeannotationfile[i],"\t"))[4]))
             push!(parser(Int32,geneEnd, split(chomp(genomeannotationfile[i], "\t"))[1]))
@@ -44,7 +44,7 @@ function genomicinterval(genomeannotationfile, coordinate)
         transcriptEnd = Any[]
         transcriptStrand = Any[]
         for i in readlines(open(genomeannotationfile))
-            if split(chomp(genomeannotationfile[i]), "\t")[3]) == "transcript"
+            if split(chomp(genomeannotationfile[i]), "\t"))[3] == "transcript"
             push!(geneName,split(chomp(genomeannotationfile[i]), "\t")[1])
             push!(parse(Int32,geneStart, split(chomp(genomeannotationfile[i],"\t"))[4]))
             push!(parser(Int32,geneEnd, split(chomp(genomeannotationfile[i], "\t"))[1]))
