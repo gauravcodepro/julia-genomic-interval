@@ -17,32 +17,32 @@ function genomicinterval(genomeannotationfile,
         geneStrand = Any[]
         readann = readlines(open(genomeannotationfile))
         for i in 1:length(readann)
-            if split(chomp(readann[i]), "\t")[3] == "gene"
+            if split(chomp(readann[i]), r"\t")[3] == "gene"
             push!(geneName,split(chomp(readann[i]), "\t")[1])
-            push!(parse(Int32,geneStart, split(chomp(readann[i],"\t")[4])))
-            push!(parser(Int32,geneEnd, split(chomp(readann[i], "\t")[1])))
+            push!(geneStart, parse(Int32, split(chomp(readann[i]),r"\t")[4]))
+            push!(geneEnd, parser(Int32, split(chomp(readann[i]), r"\t")[5]))
             end
         end
         exonName = Any[]
         exonStart = Any[]
         exonEnd = Any[]
         exonStrand = Any[]
-        for i in 1:length(readann)
-            if split(chomp(readann[i]), "\t")[3] == "exon"
-            push!(exonName,split(chomp(readann[i]), "\t")[1])
-            push!(parse(Int32,exonStart, split(chomp(readann[i],"\t")[4])))
-            push!(parser(Int32,exonEnd, split(chomp(readann[i], "\t")[1])))
+         for i in 1:length(readann)
+            if split(chomp(readann[i]), r"\t")[3] == "exon"
+            push!(geneName,split(chomp(readann[i]), "\t")[1])
+            push!(exonStart, parse(Int32, split(chomp(readann[i]),r"\t")[4]))
+            push!(exonEnd, parser(Int32, split(chomp(readann[i]), r"\t")[5]))
             end
         end
         cdsName = Any[]
         cdsStart = Any[]
         cdsEnd = Any[]
         cdsStrand = Any[]
-        for i in 1:length(readann)
-            if split(chomp(readann[i]), "\t")[3] == "CDS"
-            push!(cdsName,split(chomp(readann[i]), "\t")[1])
-            push!(parse(Int32,cdsStart, split(chomp(readann[i],"\t")[4])))
-            push!(parser(Int32,cdsEnd, split(chomp(readann[i], "\t")[1])))
+         for i in 1:length(readann)
+            if split(chomp(readann[i]), r"\t")[3] == "CDS"
+            push!(geneName,split(chomp(readann[i]), "\t")[1])
+            push!(cdsStart, parse(Int32, split(chomp(readann[i]),r"\t")[4]))
+            push!(cdsEnd, parser(Int32, split(chomp(readann[i]), r"\t")[5]))
             end
         end
         transcriptName = Any[]
@@ -50,10 +50,10 @@ function genomicinterval(genomeannotationfile,
         transcriptEnd = Any[]
         transcriptStrand = Any[]
          for i in 1:length(readann)
-            if split(chomp(readann[i]), "\t")[3] == "transcript"
-            push!(transcriptName,split(chomp(readann[i]), "\t")[1])
-            push!(parse(Int32,transcriptStart, split(chomp(readann[i],"\t")[4])))
-            push!(parser(Int32,transcriptEnd, split(chomp(readann[i], "\t")[1])))
+            if split(chomp(readann[i]), r"\t")[3] == "transcript"
+            push!(geneName,split(chomp(readann[i]), "\t")[1])
+            push!(transcriptStart, parse(Int32, split(chomp(readann[i]),r"\t")[4]))
+            push!(transcriptEnd, parser(Int32, split(chomp(readann[i]), r"\t")[5]))
             end
         end
         coordinate = parse(Int32, coordinate)
